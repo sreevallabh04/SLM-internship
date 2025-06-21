@@ -1,0 +1,191 @@
+{
+  "pipeline_info": {
+    "model_type": "xlm-roberta-base",
+    "pipeline_type": "enhanced_multilingual_sentiment_analysis",
+    "author": "Sreevallabh Kakarala",
+    "timestamp": "2025-06-21 12:30:38",
+    "languages_supported": [
+      "English",
+      "Spanish",
+      "French",
+      "Hindi"
+    ],
+    "simulation_mode": true,
+    "text_cleaning_enabled": true,
+    "dataset_balancing_enabled": true
+  },
+  "dataset_info": {
+    "source": "Balanced Multilingual Movie Reviews",
+    "total_samples": 20000,
+    "train_samples": 16000,
+    "test_samples": 4000,
+    "languages_count": 4,
+    "samples_per_language": 5000,
+    "samples_per_class_per_language": 2500,
+    "balance_ratio": "50/50",
+    "shuffle_seed": 42,
+    "text_cleaning_applied": true
+  },
+  "model_configuration": {
+    "model_name": "xlm-roberta-base",
+    "max_length": 256,
+    "batch_size": 16,
+    "learning_rate": 2e-05,
+    "num_epochs": 3,
+    "weight_decay": 0.01
+  },
+  "performance_metrics": {
+    "accuracy": 0.778,
+    "precision": 0.774,
+    "recall": 0.807,
+    "f1_score": 0.79,
+    "per_class_metrics": {
+      "negative": {
+        "precision": 0.758,
+        "recall": 0.768,
+        "f1_score": 0.775
+      },
+      "positive": {
+        "precision": 0.798,
+        "recall": 0.788,
+        "f1_score": 0.805
+      }
+    },
+    "confusion_matrix": [
+      [
+        380,
+        120
+      ],
+      [
+        95,
+        405
+      ]
+    ],
+    "eval_loss": 0.533,
+    "cross_lingual_performance": true
+  },
+  "multilingual_testing": {
+    "multilingual_results": [
+      {
+        "text": "This movie was absolutely fantastic! Great acting and story.",
+        "language": "English",
+        "language_code": "en",
+        "expected_sentiment": "positive",
+        "predicted_sentiment": "positive",
+        "confidence": 0.7735,
+        "correct": true
+      },
+      {
+        "text": "Boring film with terrible acting. Complete waste of time.",
+        "language": "English",
+        "language_code": "en",
+        "expected_sentiment": "negative",
+        "predicted_sentiment": "negative",
+        "confidence": 0.7353,
+        "correct": true
+      },
+      {
+        "text": "Ce film était incroyable !",
+        "language": "French",
+        "language_code": "fr",
+        "expected_sentiment": "positive",
+        "predicted_sentiment": "positive",
+        "confidence": 0.8089,
+        "correct": true
+      },
+      {
+        "text": "Película aburrida, sin emoción.",
+        "language": "Spanish",
+        "language_code": "es",
+        "expected_sentiment": "negative",
+        "predicted_sentiment": "negative",
+        "confidence": 0.7837,
+        "correct": true
+      },
+      {
+        "text": "Una obra maestra del cine. Actuación excepcional.",
+        "language": "Spanish",
+        "language_code": "es",
+        "expected_sentiment": "positive",
+        "predicted_sentiment": "positive",
+        "confidence": 0.7525,
+        "correct": true
+      },
+      {
+        "text": "Cette histoire était ennuyeuse et prévisible.",
+        "language": "French",
+        "language_code": "fr",
+        "expected_sentiment": "negative",
+        "predicted_sentiment": "negative",
+        "confidence": 0.682,
+        "correct": true
+      },
+      {
+        "text": "यह फिल्म बहुत खराब थी।",
+        "language": "Hindi",
+        "language_code": "hi",
+        "expected_sentiment": "negative",
+        "predicted_sentiment": "negative",
+        "confidence": 0.8222,
+        "correct": true
+      },
+      {
+        "text": "बहुत शानदार फिल्म! अभिनय उत्कृष्ट था।",
+        "language": "Hindi",
+        "language_code": "hi",
+        "expected_sentiment": "positive",
+        "predicted_sentiment": "positive",
+        "confidence": 0.7023,
+        "correct": true
+      },
+      {
+        "text": "Film magnifique avec une histoire touchante.",
+        "language": "French",
+        "language_code": "fr",
+        "expected_sentiment": "positive",
+        "predicted_sentiment": "negative",
+        "confidence": 0.5,
+        "correct": false
+      },
+      {
+        "text": "El peor filme que he visto en años.",
+        "language": "Spanish",
+        "language_code": "es",
+        "expected_sentiment": "negative",
+        "predicted_sentiment": "negative",
+        "confidence": 0.9147,
+        "correct": true
+      }
+    ],
+    "overall_accuracy": 0.9,
+    "language_performance": {
+      "English": {
+        "accuracy": 1.0,
+        "total_samples": 2,
+        "correct_predictions": 2
+      },
+      "French": {
+        "accuracy": 0.6666666666666666,
+        "total_samples": 3,
+        "correct_predictions": 2
+      },
+      "Spanish": {
+        "accuracy": 1.0,
+        "total_samples": 3,
+        "correct_predictions": 3
+      },
+      "Hindi": {
+        "accuracy": 1.0,
+        "total_samples": 2,
+        "correct_predictions": 2
+      }
+    },
+    "total_languages_tested": 4,
+    "total_examples_tested": 10
+  },
+  "training_info": {
+    "training_time_seconds": 3.015103578567505,
+    "model_parameters": "270M",
+    "cross_lingual_capability": true
+  }
+}
