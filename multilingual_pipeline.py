@@ -2209,57 +2209,94 @@ The multilingual sentiment analysis pipeline successfully demonstrates advanced 
             f.write(report_content)
     
     def run_complete_pipeline(self) -> None:
-        """Execute the complete multilingual sentiment analysis pipeline."""
-        logger.info("🚀 Starting Multilingual Sentiment Analysis Pipeline")
+        """Run the complete enhanced multilingual sentiment analysis pipeline."""
+        logger.info("🚀 Starting Enhanced Multilingual Sentiment Analysis Pipeline...")
         logger.info("=" * 60)
         
         start_time = time.time()
         
-        try:
-            # Step 1: Load data
-            logger.info("📚 Step 1: Loading multilingual dataset...")
-            data, data_info = self.load_data()
-            
-            # Step 2: Preprocess data
-            logger.info("🔄 Step 2: Preprocessing with XLM-RoBERTa...")
-            processed_data = self.preprocess_data(data)
-            
-            # Step 3: Train model
-            logger.info("🧠 Step 3: Training multilingual model...")
-            training_results = self.train_model(processed_data)
-            
-            # Step 4: Evaluate model
-            logger.info("📊 Step 4: Evaluating model performance...")
-            evaluation_results = self.evaluate_model(training_results, processed_data)
-            
-            # Step 5: Test multilingual inference
-            logger.info("🌍 Step 5: Testing multilingual capabilities...")
-            multilingual_results = self.test_multilingual_inference(training_results, processed_data)
-            
-            # Step 6: Generate visualizations
-            logger.info("📈 Step 6: Creating visualizations...")
-            viz_results = self.generate_visualizations(evaluation_results, multilingual_results)
-            
-            # Step 7: Save results
-            logger.info("💾 Step 7: Saving comprehensive results...")
-            self.save_results(data_info, evaluation_results, multilingual_results, training_results)
-            
-            # Final summary
-            total_time = time.time() - start_time
-            logger.info("=" * 60)
-            logger.info("🎉 MULTILINGUAL PIPELINE COMPLETED SUCCESSFULLY!")
-            logger.info(f"⏱️  Total execution time: {total_time:.2f} seconds")
-            logger.info(f"🎯 Overall accuracy: {evaluation_results['accuracy']:.1%}")
-            logger.info(f"🌍 Multilingual accuracy: {multilingual_results['overall_accuracy']:.1%}")
-            logger.info(f"📄 Results saved to: reports/multilingual_results.json")
-            logger.info(f"📊 Report saved to: reports/multilingual_pipeline_report.md")
-            if viz_results.get('dashboard_created'):
-                logger.info(f"📈 Dashboard saved to: {viz_results['visualization_path']}")
-            logger.info("=" * 60)
-            
-        except Exception as e:
-            logger.error(f"❌ Pipeline failed: {e}")
-            raise
+        # Step 0: Test Data Augmentation Capabilities
+        logger.info("🎭 Step 0: Testing data augmentation capabilities...")
+        self.test_data_augmentation()
+        logger.info("")
+        
+        # Step 1: Load enhanced multilingual data
+        logger.info("📚 Step 1: Loading enhanced multilingual data...")
+        data, data_info = self.load_data()
+        
+        # Step 2: Preprocess data
+        logger.info("🔄 Step 2: Preprocessing with XLM-RoBERTa...")
+        processed_data = self.preprocess_data(data)
+        
+        # Step 3: Train model
+        logger.info("🧠 Step 3: Training multilingual model...")
+        training_results = self.train_model(processed_data)
+        
+        # Step 4: Evaluate model
+        logger.info("📊 Step 4: Evaluating model performance...")
+        evaluation_results = self.evaluate_model(training_results, processed_data)
+        
+        # Step 5: Test multilingual inference
+        logger.info("🌍 Step 5: Testing multilingual capabilities...")
+        multilingual_results = self.test_multilingual_inference(training_results, processed_data)
+        
+        # Step 6: Generate visualizations
+        logger.info("📈 Step 6: Creating visualizations...")
+        viz_results = self.generate_visualizations(evaluation_results, multilingual_results)
+        
+        # Step 7: Save results
+        logger.info("💾 Step 7: Saving comprehensive results...")
+        self.save_results(data_info, evaluation_results, multilingual_results, training_results)
+        
+        # Final summary
+        total_time = time.time() - start_time
+        logger.info("=" * 60)
+        logger.info("🎉 MULTILINGUAL PIPELINE COMPLETED SUCCESSFULLY!")
+        logger.info(f"⏱️  Total execution time: {total_time:.2f} seconds")
+        logger.info(f"🎯 Overall accuracy: {evaluation_results['accuracy']:.1%}")
+        logger.info(f"🌍 Multilingual accuracy: {multilingual_results['overall_accuracy']:.1%}")
+        logger.info(f"📄 Results saved to: reports/multilingual_results.json")
+        logger.info(f"📊 Report saved to: reports/multilingual_pipeline_report.md")
+        if viz_results.get('dashboard_created'):
+            logger.info(f"📈 Dashboard saved to: {viz_results['visualization_path']}")
+        logger.info("=" * 60)
+        
+    def test_data_augmentation(self) -> None:
+        """Test and demonstrate data augmentation capabilities."""
+        logger.info("🚀 Testing Data Augmentation Capabilities...")
+        
+        # Sample texts for testing augmentation
+        test_samples = [
+            ("This movie was absolutely fantastic! Great acting and story.", 1, "en"),
+            ("Esta película fue increíble con una actuación excepcional.", 1, "es"), 
+            ("Ce film était magnifique avec une histoire captivante.", 1, "fr"),
+            ("यह फिल्म बहुत शानदार थी। अभिनय उत्कृष्ट था।", 1, "hi"),
+            ("Terrible movie with awful acting and boring plot.", 0, "en"),
+        ]
+        
+        texts = [sample[0] for sample in test_samples]
+        labels = [sample[1] for sample in test_samples]
+        lang_codes = [sample[2] for sample in test_samples]
+        
+        logger.info("📝 Original samples:")
+        for i, (text, label, lang) in enumerate(zip(texts, labels, lang_codes)):
+            sentiment = "positive" if label == 1 else "negative"
+            logger.info(f"  {i+1}. [{lang.upper()}] {sentiment}: '{text[:60]}...'")
+        
+        # Apply data augmentation
+        aug_texts, aug_labels, aug_lang_codes = self.apply_data_augmentation(
+            texts, labels, lang_codes
+        )
+        
+        # Show augmented results
+        new_samples = len(aug_texts) - len(texts)
+        if new_samples > 0:
+            logger.info(f"📈 Generated {new_samples} new augmented samples:")
+            for i in range(len(texts), len(aug_texts)):
+                sentiment = "positive" if aug_labels[i] == 1 else "negative"
+                logger.info(f"  {i+1}. [{aug_lang_codes[i].upper()}] {sentiment}: '{aug_texts[i][:60]}...'")
+        
+        logger.info("✅ Data augmentation test completed!")
 
 
 def main():
