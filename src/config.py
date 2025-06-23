@@ -23,7 +23,7 @@ LOGS_DIR = PROJECT_ROOT / "logs"
 
 # Model configuration
 MODEL_CONFIG = {
-    "model_name": "roberta-base",
+    "model_name": "distilbert-base-uncased",
     "num_labels": 2,
     "max_length": 512,
     "problem_type": "single_label_classification"
@@ -83,8 +83,8 @@ DEVICE_CONFIG = {
 
 # File paths
 PATHS = {
-    "model_output": MODELS_DIR / "roberta-imdb-sentiment",
-    "final_model": MODELS_DIR / "roberta-imdb-sentiment" / "final",
+    "model_output": MODELS_DIR / "distilbert-imdb-sentiment",
+    "final_model": MODELS_DIR / "distilbert-imdb-sentiment" / "final",
     "training_logs": LOGS_DIR / "training_results.json",
     "performance_dashboard": REPORTS_DIR / "performance_dashboard.png",
     "pipeline_report": REPORTS_DIR / "clean_pipeline_report.md",

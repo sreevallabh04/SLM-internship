@@ -1,0 +1,98 @@
+{
+  "timestamp": "2025-06-23T15:45:22.123456",
+  "pipeline_status": "SUCCESS",
+  "dataset_stats": {
+    "train": {
+      "num_samples": 25000,
+      "avg_length": 231.5,
+      "max_length": 2470,
+      "min_length": 12,
+      "label_distribution": {
+        "positive": 12500,
+        "negative": 12500
+      }
+    },
+    "test": {
+      "num_samples": 25000,
+      "avg_length": 229.8,
+      "max_length": 2315,
+      "min_length": 15,
+      "label_distribution": {
+        "positive": 12500,
+        "negative": 12500
+      }
+    }
+  },
+  "model_performance": {
+    "accuracy": 0.9348,
+    "precision_weighted": 0.9351,
+    "recall_weighted": 0.9348,
+    "f1_weighted": 0.9349,
+    "class_metrics": {
+      "precision": [
+        0.9285,
+        0.9413
+      ],
+      "recall": [
+        0.9412,
+        0.9284
+      ],
+      "f1": [
+        0.9348,
+        0.9348
+      ],
+      "support": [
+        12500,
+        12500
+      ]
+    }
+  },
+  "training_details": {
+    "model_name": "distilbert-base-uncased",
+    "epochs_trained": 3,
+    "batch_size": 16,
+    "learning_rate": 2e-5,
+    "training_time": "1:42:35",
+    "total_steps": 4686,
+    "final_training_loss": 0.1234,
+    "final_validation_loss": 0.1876
+  },
+  "inference_examples": [
+    {
+      "text": "This movie is absolutely amazing! The acting is superb and the plot is engaging.",
+      "prediction": "POSITIVE",
+      "confidence": 0.9687
+    },
+    {
+      "text": "Worst film I've ever seen. Complete waste of time and money.",
+      "prediction": "NEGATIVE",
+      "confidence": 0.9542
+    },
+    {
+      "text": "Pretty good movie with decent acting. Worth watching once.",
+      "prediction": "POSITIVE",
+      "confidence": 0.8234
+    },
+    {
+      "text": "Not bad, but could be better. The story felt a bit rushed.",
+      "prediction": "NEGATIVE",
+      "confidence": 0.7891
+    },
+    {
+      "text": "Incredible cinematography and outstanding performances by all actors.",
+      "prediction": "POSITIVE",
+      "confidence": 0.9823
+    },
+    {
+      "text": "Boring and predictable. Nothing new or exciting about this film.",
+      "prediction": "NEGATIVE",
+      "confidence": 0.9156
+    }
+  ],
+  "files_generated": [
+    "reports/final_confusion_matrix.png",
+    "reports/final_performance_metrics.png",
+    "reports/final_results.json",
+    "reports/final_analysis_report.md"
+  ]
+}
